@@ -12,7 +12,7 @@ mathjax: true
 Artificial Intelligence defeating the best human player was perhaps one of biggest breakthroughs of this decade. Recent years have witnessed great achivements in the field of AI, with machine learning based systems delivering performance comparable to or even better than humans. So the question arises, what is this new AI algorithm ? Interestingly, AI and machine learning is not new. The core concepts behind the success of these algorithms have been there for decades. But the lack of labelled datasets and computing systems, prohibited large scale implementation and execution of these. Recent success of these algorithms can be attributed to availability of huge open source labeled datasets and the relentless research in the fields of deep learning and computing systems. 
 
 <div class="imgcap">
-<img src="/assets/HLS-for-Hardware-Accelerator-Design/Gobot_news.png" width="50%" >
+<img src="/assets/HLS-for-Hardware-Accelerator-Design/Gobot_news.png" width="50%" border="none">
 <div class="thecap">Image credit: <a href="https://www.wired.com/2016/01/in-a-huge-breakthrough-googles-ai-beats-a-top-player-at-the-game-of-go/">www.wired.com</a>.</div>
 </div>
 
