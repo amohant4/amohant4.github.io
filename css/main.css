@@ -265,6 +265,7 @@ a:visited { color: #205caa; }
 /* AK custom CSS mods */
 .imgright { float: right; margin-left: 10px; }
 .imgcap img {
+  border-style: none;
   /*border: 1px solid #999;*/
   max-width: 100%;
 }
