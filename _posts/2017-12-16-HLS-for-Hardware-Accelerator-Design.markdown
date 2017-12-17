@@ -12,7 +12,7 @@ mathjax: true
 Artificial Intelligence defeating the best human player was perhaps one of biggest breakthroughs of this decade. Recent years have witnessed great achivements in the field of AI, with machine learning based systems delivering performance comparable to or even better than humans. So the question arises, what is this new AI algorithm ? Interestingly, AI and machine learning is not new. The core concepts behind the success of these algorithms have been there for decades. But the lack of labelled datasets and computing systems, prohibited large scale implementation and execution of these. Recent success of these algorithms can be attributed to availability of huge open source labeled datasets and the relentless research in the fields of deep learning and computing systems. 
 
 <div class="imgcap">
-<img src="/assets/HLS-for-Hardware-Accelerator-Design/Gobot_news.png" width="50%" border="none">
+<img src="/assets/HLS-for-Hardware-Accelerator-Design/Gobot_news.png" width="50%">
 <div class="thecap">Image credit: <a href="https://www.wired.com/2016/01/in-a-huge-breakthrough-googles-ai-beats-a-top-player-at-the-game-of-go/">www.wired.com</a>.</div>
 </div>
 
@@ -42,7 +42,7 @@ Deep learning depends on deep layered structures, with each layer feeding data t
 Using Verilog / VHDL to write codes for hardware design gives the designer the ultimate flexibility and often results in very high performance. However, the developement time when using verilog/VHDL is high. Because of this, during architectural exploration phase when the design space is searched over, using verilog / VHDL is not always the best option. In contrast, the HLS compilers provided by Altera and Xilinx take in untimed C++ as input and spit out production-quality register transfer level (RTL) code that is optimized for their FPGAs. Also the verification time is orders of maginitude faster than RTL because of the increased abstraction level for FPGA hardware design. 
 
 
-In this post, we will discuss HLS compilation tools from ALtera. The tools can be downloaded from [Altera's Website](https://www.altera.com/products/design-software/embedded-software-developers/opencl/overview.html). You will also need to download the Board Support Package (BSP) from your FPGA board vendor's site. In my case it was [Terasic DE5-Net](http://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=158&No=526&PartNo=4) with Altera Stratix V FPGA.
+In this post, we will discuss HLS compilation tools from ALtera. The tools can be downloaded from [Altera's Website](https://www.altera.com/products/design-software/embedded-software-developers/opencl/overview.html). You will also need to download the Board Support Package (BSP) from your FPGA board vendor's site. In my case it was [Terasic DE5-Net](http://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=158&No=526&PartNo=4) with Altera Stratix V FPGA. Once you have installed the OpenCL SDK from altera and the BSP from the board vendor, try running ```aocl diagnose acl0``` to make sure that your setup is working properly. In case it fails, I recommend contacting the vendor's support team immediately. In my case, they fixed driver version related issues in a few days while I wasted 15 days looking for solutions on internet. 
 
 The framework consists of two parts: 
 * __The Host:__ Host is any CPU with PCIe interface. On some boards (CycloneV), the ARM cores on SoC can also act as host. The host code is in C++ and can use all the C++ libraries. Components of the algorithm demanding high computations can be off-loaded to a FPGA device for accleration.   
@@ -54,7 +54,16 @@ The framework consists of two parts:
 
 ### HLS Deep dive: Matrix multiplication 
 
-We will take an look at optimization knobs provided by HLS using an toy example of matrix multiplication. 
+We will take an look at optimization knobs provided by HLS using an toy example of matrix multiplication. It is one of the examples from Altera and should be included in the BSP from vendor. It consists of two main files: 
+* main.cpp -- The host program file
+* matrix_mult.cl -- OpenCL kernel file
+
+#### OpenCL kernel
+
+<div class="imgcap">
+<img src="/assets/HLS-for-Hardware-Accelerator-Design/kernel_1.png" width="100%" >
+</div>
+
 
 
 

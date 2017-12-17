@@ -8,6 +8,9 @@ url: "http://amohant4.github.io"
 github_username:  amohant4
 linkedin_username: abinashm89
 
+#plugins:
+#  - jekyll-seo-tag  
+
 # Build settings
 markdown: kramdown
 permalink: pretty
