@@ -1,0 +1,35 @@
+<footer class="site-footer">
+
+  <div class="wrap">
+
+    <!-- <h2 class="footer-heading">{{ site.title }}</h2> -->
+
+    <div class="footer-col-1 column">
+      <ul>
+        <li>{{ site.title }}</li>
+        <!-- <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li> -->
+      </ul>
+    </div>
+
+    <div class="footer-col-2 column">
+      <ul>
+        {% if site.github_username %}<li>
+          <a href="https://github.com/{{ site.github_username }}">  
+            <i class="fa fa-github"></i> amohant4 
+          </a>  
+        </li>{% endif %} 
+        {% if site.linkedin_username %}<li>
+          <a href="https://linkedin.com/in/{{ site.linkedin_username }}">  
+            <i class="fa fa-linkedin"></i> abinashm89 
+          </a>  
+        </li>{% endif %}      
+      </ul>
+    </div>
+
+    <div class="footer-col-3 column">
+      <p class="text">{{ site.description }}</p>
+    </div>
+
+  </div>
+
+</footer>

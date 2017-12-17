@@ -4,12 +4,18 @@ title: About
 permalink: /about/
 ---
 
-![GitHub Logo](../assests/3H6A3357.jpg)
+<div class="imgcap">
+<img src="/../assets/3H6A3357.jpg" height="300" width="300">
+</div>
 
-# Abinash Mohanty
-<span style="color:gray"> _amohant4 at asu dot edu_ </span>
 
-Hi, I am a PhD. candidate in [Arizona State University](www.asu.edu), advised by Professor [Yu Cao](http://nimo.asu.edu/ycao/). I am mainly interested in deep learning, especially algorithm design and hardware acceleration.
+<style>
+p {
+  text-align: justify;
+}
+</style>
+
+Hi, my name is Abinash Mohanty. I am a PhD. candidate in [Arizona State University](www.asu.edu), advised by Professor [Yu Cao](http://nimo.asu.edu/ycao/). I am mainly interested in deep learning, especially algorithm design and hardware acceleration.
 
 During the course of my career, I have been very fortunate to have a taste of many diverse and fascinating fields of studies. I started with my undergraduation at [National Institute of Technology](http://nitrkl.ac.in/), Rourkela, India in the field of Electronics and Communications Engineering. After that I had the oppurtunity of working at Samsung Research Institute for 3 wonderful years. My stint at Samsung exposed me to many challenging projects on interesting topics like 3D stereoscopic rendering on embedded platforms, light weight and high performance widget engine using [Webkit's](https://webkit.org/) rendering engine etc. In the last 4 years, I took courses from many disciplines like machine learning, multi-core architectures, analog design, accelerator design etc.
 I also did an internship at Intel Corp in 2016, where I worked on architecture design and implementation of deep learning accelerators for speech processing. I have also worked as an consultant for [Boehringer Ingelheim](https://www.boehringer-ingelheim.com/).
@@ -37,4 +43,3 @@ J.S., Vrudhula, S., Chae, J., Cao, Y., Berisha, V.,__<span style="color:green">"
 * Sutaria, K.B., Ren, P., __Mohanty, A.__, Feng, X., Wang, R., Huang, R. and Cao, Y.,__<span style="color:green">"Duty cycle shift under static/dynamic aging in 28nm HK-MG technology,"</span>__ in _IEEE International Reliability Physics Symposium (IRPS)_, 2015, pp. CA-7.
 
 [Resume](../assests/cv.pdf) ---  [Github](https://github.com/amohant4)
-

@@ -3,9 +3,5 @@ layout: page
 title: Contact
 permalink: /contact/
 ---
-You can email me at amohant4@asu.edu
 
-
-
-
-
+You can contact me by email at <a href="mailto:{{ site.email }}">{{ site.email }}</a>
