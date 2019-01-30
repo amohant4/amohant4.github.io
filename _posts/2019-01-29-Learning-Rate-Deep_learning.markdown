@@ -134,7 +134,7 @@ for global_step in range(0,total_steps):
     # Feed different values for learning rate to each training step.
     error, _ = sess.run([loss, train_step], feed_dict={learning_rate: lr, data: ...})  # pass the rule based lr in feed dict
 
-    loss_over_last_N_iters.append(0,error)
+    loss_over_last_N_iters.append(0,error)      # Get the new loss and update the list tracking loss
     loss_over_last_N_iters.pop()
 ```
 
