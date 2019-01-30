@@ -30,18 +30,20 @@ The following figure explains the effects of learning rate on gradient descent. 
 <div class="thecap">Effect of various learning rates on convergence (Image credit: <a href="http://cs231n.github.io/neural-networks-3/">cs231n</a>).</div>
 </div>
 
+#### Selecting a good starting value for learning rate
+
 Now the question aries, what is the best value of the learning rate and how to decide it ? A systematic way to estimate a good learning rate is by training the model initially with a very low learning rate and increasing it (either linearly or exponentially) at each iteration (illustrated below). We keep doing it to the point where the loss stops decreasing and starts to increase. That means that the learning rate is too high for the application and so gradient descent is diverging. For practical applications our learning rate should ideally be 1 or 2 step smaller than this value. 
 
 <div class="imgcap">
 <img src="/assets/Learning-Rate-Selection/schedule_lr_1.png" width="45%">
-<div class="thecap">Image credit: <a href="https://towardsdatascience.com/understanding-learning-rates-and-how-it-improves-performance-in-deep-learning-d0d4059c1c10"></a>Hafidz's Blog.</div>
+<div class="thecap">Image credit: <a href="https://towardsdatascience.com/understanding-learning-rates-and-how-it-improves-performance-in-deep-learning-d0d4059c1c10">Hafidz's Blog</a>.</div>
 </div>
 
 If we keep track of the learning rate and plot log of the learning rate and the error we will see a plot as shown below. A good learning rate somewhere to the left to the lowest point of the graph (as demonstrated in below graph). In this case, its 0.001 to 0.01. 
 
 <div class="imgcap">
 <img src="/assets/Learning-Rate-Selection/select_lr.png" width="45%">
-<div class="thecap">Image credit: <a href="https://towardsdatascience.com/understanding-learning-rates-and-how-it-improves-performance-in-deep-learning-d0d4059c1c10"></a>Hafidz's Blog.</div>
+<div class="thecap">Image credit: <a href="https://towardsdatascience.com/understanding-learning-rates-and-how-it-improves-performance-in-deep-learning-d0d4059c1c10">Hafidz's Blog</a>.</div>
 </div>
 
 In general no fixed learning rate works best for the entire training process. Typically we start with a learning rate found using the method described above. During the training process we change learning rate to best facilitate learning. There are many different ways to accomplish this. In this blog, we will go through a few popular learning rate scheduler. 
@@ -57,7 +59,7 @@ where, $$\epsilon_{k}$$ is the learning rate for $$k_{th}$$ epoch, $$\epsilon_{0
 
 <div class="imgcap">
 <img src="/assets/Learning-Rate-Selection/stepdecay.png" width="45%">
-<div class="thecap">Image credit: <a href="https://www.jeremyjordan.me/nn-learning-rate/"></a>Jeremy's Blog.</div>
+<div class="thecap">Image credit: <a href="https://www.jeremyjordan.me/nn-learning-rate/">Jeremy's Blog</a>.</div>
 </div>
 
 In tensorflow this can be done easily. To modify the learning rate we need a variable to store the learning rate and a variable to store the number of iterations. 
@@ -139,3 +141,5 @@ for global_step in range(0,total_steps):
 ```
 
 #### Cyclic learning rates
+
+All the schemes we discussed so far were targeted at starting with a large learning rate and making it smaller as training progressed. some works like <a href="https://arxiv.org/abs/1506.01186">Cyclical Learning Rates for Training Neural Networks</a> and <a href="https://arxiv.org/abs/1608.03983">Stochastic Gradient Descent with Warm Restarts</a> suggest otherwise. Infact the authors of these works have demonstrated that 
