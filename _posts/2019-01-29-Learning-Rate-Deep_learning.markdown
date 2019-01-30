@@ -70,9 +70,13 @@ $$ \epsilon_{k} = (1-\alpha)\epsilon_{0} + \alpha \epsilon_{\tau} $$
 
 with $$ \alpha = \frac{k}{\tau}$$. After iteration $$ \tau$$, it is common to leave $$\epsilon$$  constant.   
 
-#### 
+#### Decrease learning rate when hit a pleteau
 
+This technique is also very popular and its intuitive also. Keep using a big learning rate to quickly appraoch a local minima and reduce it once we hit a plateau (i.e. this learning rate is too big for now, we need smaller value to be able to fine tune the parameters more). The term plateau referes to the point when the change in loss wrt training iterations is less then a threshold $$\theta$$. What it essentially means is the loss vs iterations curve becomes flat. This is illustrated in the figure below. 
 
-
+<div class="imgcap">
+<img src="/assets/Learning-Rate-Selection/lr_decay_plateau.png" width="35%">
+<!--div class="thecap">Image credit: <a href="https://www.jeremyjordan.me/nn-learning-rate/"></a>Jeremy's Blog.</div-->
+</div>
 
 #### Cyclic learning rates
