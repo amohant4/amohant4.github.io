@@ -7,9 +7,7 @@ date:   2019-01-29 05:04:00
 mathjax: true
 ---
 
-Learning rate is one of the most critical hyper-parameter and decides the fate of your training process. If you mess up the learning rate, then the optimizer might not be able to converge at all. Learning rate controls how much we updating the parameters in our network with respect to the gradient of loss. 
-
-The gradient is given by: 
+Learning rate is one of the most critical hyper-parameter and decides the fate of your training process. If you mess up the learning rate, then the optimizer might not be able to converge at all. This hyper-parameter controls how much we updating the parameters in our network with respect to the gradient of loss. As a brief introduction, the gradient is given by: 
 
 $$g = \frac{1}{m^{'}}\nabla_{\theta}\sum_{i=1}^{m^{'}}L(x^{(i)},y^{(i)},\theta)$$
 
@@ -17,13 +15,7 @@ Using this gradient from the minibatch, stochastic gradient descent follows the 
 
 $$\theta \leftarrow \theta - \epsilon g $$  
 
-where $$ \epsilon $$ is the learning rate. 
-
-```
-new_weight = existing_weight — learning_rate * gradient
-```
-
-The following figure explains the effects of learning rate on gradient descent. A very small learning rate will make gradient descent take small steps even if the gradient is big, thus slowing the process of learning. If the learning rate is high, then if becomes impossible to learn very small changes in the parameters needed to fine tune the model towards the end of the training process, so the error flattens out very early. If the learning rate is very high, then gradient descent takes big steps and jumps around. This can lead to divergence and thus increase the error. 
+where $$ \epsilon $$ is the learning rate. The following figure explains the effects of learning rate on gradient descent. A very small learning rate will make gradient descent take small steps even if the gradient is big, thus slowing the process of learning. If the learning rate is high, then if becomes impossible to learn very small changes in the parameters needed to fine tune the model towards the end of the training process, so the error flattens out very early. If the learning rate is very high, then gradient descent takes big steps and jumps around. This can lead to divergence and thus increase the error. 
 
 <div class="imgcap">
 <img src="/assets/Learning-Rate-Selection/effect_of_lr.png" width="35%">
@@ -142,4 +134,9 @@ for global_step in range(0,total_steps):
 
 #### Cyclic learning rates
 
-All the schemes we discussed so far were targeted at starting with a large learning rate and making it smaller as training progressed. some works like <a href="https://arxiv.org/abs/1506.01186">Cyclical Learning Rates for Training Neural Networks</a> and <a href="https://arxiv.org/abs/1608.03983">Stochastic Gradient Descent with Warm Restarts</a> suggest otherwise. Infact the authors of these works have demonstrated that 
+All the schemes we discussed so far were targeted at starting with a large learning rate and making it smaller as training progressed. some works like <a href="https://arxiv.org/abs/1506.01186">Cyclical Learning Rates for Training Neural Networks</a> and <a href="https://arxiv.org/abs/1608.03983">Stochastic Gradient Descent with Warm Restarts</a> suggest otherwise. Infact the authors of these works have demonstrated that a cyclical learning rate schedule which varies between two bound values can deliver results better than the traditional learning rate schedules. The intuition behind why cyclic learning rates work are: 
+
+1.  
+
+
+
