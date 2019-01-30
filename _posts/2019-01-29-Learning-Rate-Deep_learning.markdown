@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title:  "Learning Rate in Deep Learnaing"
+title:  "Learning Rate in Deep Learning"
 excerpt: "An introduction to learning rate hyper parameter used in deep neural network training. "
 date:   2019-01-29 05:04:00
 mathjax: true
@@ -44,4 +44,12 @@ If we keep track of the learning rate and plot log of the learning rate and the 
 <div class="thecap">Image credit: <a href="https://towardsdatascience.com/understanding-learning-rates-and-how-it-improves-performance-in-deep-learning-d0d4059c1c10"></a>Hafidz's Blog.</div>
 </div>
 
-In general no fixed learning rate works best for the entire training process. Typically we start with a learning rate found using the method described above. 
+In general no fixed learning rate works best for the entire training process. Typically we start with a learning rate found using the method described above. During the training process we change learning rate to best facilitate learning. There are many different ways to accomplish this. In this blog, we will go through a few popular learning rate scheduler. 
+
+## Linear decay of learning rate
+
+In practice, it is common to decay the learning rate linearly until iteration $$\tau$$:
+
+$$ \epsilon_{k} = (1-\alpha)\epsilon_{0} + \alpha \epsilon_{\tau} $$
+
+with $$ \alpha = \frac{k}{\tau}$$. After iteration $$ \tau$$, it is common to leave $$\epsilon$$  constant.   
