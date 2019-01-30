@@ -55,9 +55,10 @@ $$ \epsilon_{k} = \epsilon_{0} \times \alpha^{\lfloork/N\rfloor }$$
 
 where, $$\epsilon_{k}$$ is the learning rate for $$k_{th}$$ epoch, $$\epsilon_{0}$$ is the initial learning rate, $$\alpha$$ is the fraction by which learning rate is reduced, $$\lfloor . \rfloor$$ is floor operation and N is the number of epochs after which learning rate is dropped.  
 
-
-
-
+<div class="imgcap">
+<img src="/assets/Learning-Rate-Selection/stepdecay.png" width="35%">
+<div class="thecap">Image credit: <a href="https://www.jeremyjordan.me/nn-learning-rate/"></a>Jeremy's Blog.</div>
+</div>
 
 #### Linear or Exponential Time-Based Decay
 
