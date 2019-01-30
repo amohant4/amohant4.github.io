@@ -22,3 +22,10 @@ where $$ \epsilon $$ is the learning rate.
 ```
 new_weight = existing_weight — learning_rate * gradient
 ```
+
+The following figure explains the effects of learning rate on gradient descent. 
+
+<div class="imgcap">
+<img src="/assets/Learning-Rate_Selection/effect_of_lr.png" width="50%">
+<div class="thecap">Effect of various learning rates on convergence (Image credit: <a href="http://cs231n.github.io/neural-networks-3/">cs231n)</a>.</div>
+</div>
