@@ -14,7 +14,7 @@ $$mean = \frac{\displaystyle\sum_{i=1}^{n} x_{i}}{n}$$
 
 The gradient is given by: 
 
-$$g = \frac{1}{m^{'}} \nabla_{\theta}\sum_{i=1}^{m^{'}}L(x^{(i)}, y^{(i)}, \theta)}$$
+$$g = \frac{1}{m^{'}} \nabla_{\theta}   \sum_{i=1}^{m^{'}}  L(x^{(i)}, y^{(i)}, \theta) $$
 
 Using this gradient from the minibatch, stochastic gradient descent follows the estimated downhill: 
 
