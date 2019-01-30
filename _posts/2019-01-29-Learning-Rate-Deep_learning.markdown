@@ -60,6 +60,21 @@ where, $$\epsilon_{k}$$ is the learning rate for $$k_{th}$$ epoch, $$\epsilon_{0
 <div class="thecap">Image credit: <a href="https://www.jeremyjordan.me/nn-learning-rate/"></a>Jeremy's Blog.</div>
 </div>
 
+In tensorflow this can be done easily. To modify the learning rate we need a variable to store the learning rate and a variable to store the number of iterations. 
+```
+...
+global_step = tf.Variable(0, trainable=False)       # Variable to store number of iterations
+starter_learning_rate = 0.1                         # Initial Learning rate
+learning_rate = tf.train.exponential_decay(starter_learning_rate, global_step,  # Function applied by TF on the varible (same formula as shown above)
+                                           100000, 0.96, staircase=True)        # make staircase=True to force an integer division and thus create a step decay
+# Passing global_step to minimize() will increment it at each step.
+learning_step = (
+    tf.train.GradientDescentOptimizer(learning_rate)        # We create an instance of the optimizer with updated learning rate each time
+    .minimize(...my loss..., global_step=global_step)       # global step (# iterations) is updated by the minimize function
+)
+```
+
+
 #### Linear or Exponential Time-Based Decay
 
 This technique is also known as learning rate annealing. We start with a relatively high learning rate and then gradually lower it during training. The intuition behind this approach is that we'd like to traverse quickly from the initial parameters to a range of "good" parameter values but then we'd like a learning rate small enough that we can explore the "deeper, but narrower parts of the loss function" (fine tuning the parameters to get best results). 
@@ -70,6 +85,25 @@ $$ \epsilon_{k} = (1-\alpha)\epsilon_{0} + \alpha \epsilon_{\tau} $$
 
 with $$ \alpha = \frac{k}{\tau}$$. After iteration $$ \tau$$, it is common to leave $$\epsilon$$  constant.   
 
+In case of exponential decay:
+
+$$ \epsilon_{k} = \epsilon_{0} \times \alpha^{k/N}$$
+
+In tensorflow this can be implemented like we implemented step decay. In this case, we make staircase=False, this uses a floating division and thus leads to gradual decrease in learning rate.
+
+```
+...
+global_step = tf.Variable(0, trainable=False)
+starter_learning_rate = 0.1
+learning_rate = tf.train.exponential_decay(starter_learning_rate, global_step,
+                                           100000, 0.96, staircase=False)   # make staircase=False to force an float division and thus create a gradual decay
+# Passing global_step to minimize() will increment it at each step.
+learning_step = (
+    tf.train.GradientDescentOptimizer(learning_rate)
+    .minimize(...my loss..., global_step=global_step)
+)
+```
+
 #### Decrease learning rate when hit a pleteau
 
 This technique is also very popular and its intuitive also. Keep using a big learning rate to quickly appraoch a local minima and reduce it once we hit a plateau (i.e. this learning rate is too big for now, we need smaller value to be able to fine tune the parameters more). The term plateau referes to the point when the change in loss wrt training iterations is less then a threshold $$\theta$$. What it essentially means is the loss vs iterations curve becomes flat. This is illustrated in the figure below. 
@@ -78,5 +112,22 @@ This technique is also very popular and its intuitive also. Keep using a big lea
 <img src="/assets/Learning-Rate-Selection/lr_decay_plateau.png" width="35%">
 <!--div class="thecap">Image credit: <a href="https://www.jeremyjordan.me/nn-learning-rate/"></a>Jeremy's Blog.</div-->
 </div>
+
+These sort of custom learning rate decay scheduler can be easily impelemented by making the learning rate a placeholder. We then calculate the learning rate based on some set of rules and pass it to tensorflow in the feed_dict along with other data (input, output, dropout ratio, etc).
+
+```
+learning_rate = tf.placeholder(tf.float32, shape=[])
+# ...
+train_step = tf.train.GradientDescentOptimizer(
+    learning_rate=learning_rate).minimize(mse)
+
+sess = tf.Session()
+
+# Feed different values for learning rate to each training step.
+sess.run(train_step, feed_dict={learning_rate: 0.1})
+sess.run(train_step, feed_dict={learning_rate: 0.1})
+sess.run(train_step, feed_dict={learning_rate: 0.01})
+sess.run(train_step, feed_dict={learning_rate: 0.01})
+```
 
 #### Cyclic learning rates
