@@ -27,6 +27,21 @@ The following figure explains the effects of learning rate on gradient descent. 
 
 <div class="imgcap">
 <img src="/assets/Learning-Rate-Selection/effect_of_lr.png" width="35%">
-<div class="thecap">Effect of various learning rates on convergence (Image credit: <a href="http://cs231n.github.io/neural-networks-3/">cs231n)</a>.</div>
+<div class="thecap">Effect of various learning rates on convergence (Image credit: <a href="http://cs231n.github.io/neural-networks-3/">cs231n</a>).</div>
 </div>
 
+Now the question aries, what is the best value of the learning rate and how to decide it ? A systematic way to estimate a good learning rate is by training the model initially with a very low learning rate and increasing it (either linearly or exponentially) at each iteration (illustrated below). We keep doing it to the point where the loss stops decreasing and starts to increase. That means that the learning rate is too high for the application and so gradient descent is diverging. For practical applications our learning rate should ideally be 1 or 2 step smaller than this value. 
+
+<div class="imgcap">
+<img src="/assets/Learning-Rate-Selection/schedule_lr_1.png" width="35%">
+<div class="thecap">Image credit: <a href="https://towardsdatascience.com/understanding-learning-rates-and-how-it-improves-performance-in-deep-learning-d0d4059c1c10"></a>Hafidz's Blog.</div>
+</div>
+
+If we keep track of the learning rate and plot log of the learning rate and the error we will see a plot as shown below. A good learning rate somewhere to the left to the lowest point of the graph (as demonstrated in below graph). In this case, its 0.001 to 0.01. 
+
+<div class="imgcap">
+<img src="/assets/Learning-Rate-Selection/select_lr.png" width="35%">
+<div class="thecap">Image credit: <a href="https://towardsdatascience.com/understanding-learning-rates-and-how-it-improves-performance-in-deep-learning-d0d4059c1c10"></a>Hafidz's Blog.</div>
+</div>
+
+In general no fixed learning rate works best for the entire training process. Typically we start with a learning rate found using the method described above. 
