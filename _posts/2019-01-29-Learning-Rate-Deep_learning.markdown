@@ -46,7 +46,7 @@ If we keep track of the learning rate and plot log of the learning rate and the 
 
 In general no fixed learning rate works best for the entire training process. Typically we start with a learning rate found using the method described above. During the training process we change learning rate to best facilitate learning. There are many different ways to accomplish this. In this blog, we will go through a few popular learning rate scheduler. 
 
-## Linear decay of learning rate
+### Linear decay of learning rate
 
 In practice, it is common to decay the learning rate linearly until iteration $$\tau$$:
 
