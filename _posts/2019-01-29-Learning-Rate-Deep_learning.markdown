@@ -65,8 +65,9 @@ In tensorflow this can be done easily. To modify the learning rate we need a var
 ...
 global_step = tf.Variable(0, trainable=False)       # Variable to store number of iterations
 starter_learning_rate = 0.1                         # Initial Learning rate
-learning_rate = tf.train.exponential_decay(starter_learning_rate, global_step,  # Function applied by TF on the varible (same formula as shown above)
-                                           100000, 0.96, staircase=True)        # make staircase=True to force an integer division and thus create a step decay
+learning_rate = tf.train.exponential_decay(
+                starter_learning_rate, global_step,  # Function applied by TF on the varible (same formula as shown above)
+                100000, 0.96, staircase=True)        # make staircase=True to force an integer division and thus create a step decay
 # Passing global_step to minimize() will increment it at each step.
 learning_step = (
     tf.train.GradientDescentOptimizer(learning_rate)        # We create an instance of the optimizer with updated learning rate each time
@@ -95,8 +96,9 @@ In tensorflow this can be implemented like we implemented step decay. In this ca
 ...
 global_step = tf.Variable(0, trainable=False)
 starter_learning_rate = 0.1
-learning_rate = tf.train.exponential_decay(starter_learning_rate, global_step,
-                                           100000, 0.96, staircase=False)   # make staircase=False to force an float division and thus create a gradual decay
+learning_rate = tf.train.exponential_decay(
+                    starter_learning_rate, global_step,
+                    100000, 0.96, staircase=False)   # make staircase=False to force an float division and thus create a gradual decay
 # Passing global_step to minimize() will increment it at each step.
 learning_step = (
     tf.train.GradientDescentOptimizer(learning_rate)
