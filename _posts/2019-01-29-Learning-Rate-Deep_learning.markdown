@@ -116,18 +116,26 @@ This technique is also very popular and its intuitive also. Keep using a big lea
 These sort of custom learning rate decay scheduler can be easily impelemented by making the learning rate a placeholder. We then calculate the learning rate based on some set of rules and pass it to tensorflow in the feed_dict along with other data (input, output, dropout ratio, etc).
 
 ```
-learning_rate = tf.placeholder(tf.float32, shape=[])
-# ...
-train_step = tf.train.GradientDescentOptimizer(
-    learning_rate=learning_rate).minimize(mse)
+loss_over_last_N_iters = [] # Keep track of loss in last N iterations 
+lr = 0.01 # can be anything 
+for global_step in range(0,total_steps):
+    learning_rate = tf.placeholder(tf.float32, shape=[])
+    change_in_loss = get_loss_change(loss_over_last_N_iters) # determine if the loss is changing or has hit a plateau.
+    if change_in_loss > theta: 
+        lr = lr*alpha   # Change the learning rate (eg. make it lr/10)
+    # ...
 
-sess = tf.Session()
+    loss = ... 
 
-# Feed different values for learning rate to each training step.
-sess.run(train_step, feed_dict={learning_rate: 0.1})
-sess.run(train_step, feed_dict={learning_rate: 0.1})
-sess.run(train_step, feed_dict={learning_rate: 0.01})
-sess.run(train_step, feed_dict={learning_rate: 0.01})
+    train_step = tf.train.GradientDescentOptimizer(     
+        learning_rate=learning_rate).minimize(mse)  # create an optimizer with the placeholder input as learning rate
+    sess = tf.Session()
+
+    # Feed different values for learning rate to each training step.
+    error, _ = sess.run([loss, train_step], feed_dict={learning_rate: lr, data: ...})  # pass the rule based lr in feed dict
+
+    loss_over_last_N_iters.append(0,error)
+    loss_over_last_N_iters.pop()
 ```
 
 #### Cyclic learning rates
