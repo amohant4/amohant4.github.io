@@ -26,7 +26,7 @@ new_weight = existing_weight — learning_rate * gradient
 The following figure explains the effects of learning rate on gradient descent. A very small learning rate will make gradient descent take small steps even if the gradient is big, thus slowing the process of learning. If the learning rate is high, then if becomes impossible to learn very small changes in the parameters needed to fine tune the model towards the end of the training process, so the error flattens out very early. If the learning rate is very high, then gradient descent takes big steps and jumps around. This can lead to divergence and thus increase the error. 
 
 <div class="imgcap">
-<img src="/assets/Learning-Rate_Selection/effect_of_lr.png" width="50%">
+<img src="/assets/Learning-Rate-Selection/effect_of_lr.png" width="50%">
 <div class="thecap">Effect of various learning rates on convergence (Image credit: <a href="http://cs231n.github.io/neural-networks-3/">cs231n)</a>.</div>
 </div>
 
