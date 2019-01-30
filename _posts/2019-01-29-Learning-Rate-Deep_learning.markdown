@@ -7,4 +7,6 @@ date:   2019-01-29 05:04:00
 mathjax: true
 ---
 
-Test page
+Learning rate is one of the most critical hyper-parameter and decides the fate of your training process. If you mess up the learning rate, then the optimizer might not be able to converge at all. 
+
+ 
