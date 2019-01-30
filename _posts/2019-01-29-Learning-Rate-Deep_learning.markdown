@@ -33,14 +33,14 @@ The following figure explains the effects of learning rate on gradient descent. 
 Now the question aries, what is the best value of the learning rate and how to decide it ? A systematic way to estimate a good learning rate is by training the model initially with a very low learning rate and increasing it (either linearly or exponentially) at each iteration (illustrated below). We keep doing it to the point where the loss stops decreasing and starts to increase. That means that the learning rate is too high for the application and so gradient descent is diverging. For practical applications our learning rate should ideally be 1 or 2 step smaller than this value. 
 
 <div class="imgcap">
-<img src="/assets/Learning-Rate-Selection/schedule_lr_1.png" width="35%">
+<img src="/assets/Learning-Rate-Selection/schedule_lr_1.png" width="45%">
 <div class="thecap">Image credit: <a href="https://towardsdatascience.com/understanding-learning-rates-and-how-it-improves-performance-in-deep-learning-d0d4059c1c10"></a>Hafidz's Blog.</div>
 </div>
 
 If we keep track of the learning rate and plot log of the learning rate and the error we will see a plot as shown below. A good learning rate somewhere to the left to the lowest point of the graph (as demonstrated in below graph). In this case, its 0.001 to 0.01. 
 
 <div class="imgcap">
-<img src="/assets/Learning-Rate-Selection/select_lr.png" width="35%">
+<img src="/assets/Learning-Rate-Selection/select_lr.png" width="45%">
 <div class="thecap">Image credit: <a href="https://towardsdatascience.com/understanding-learning-rates-and-how-it-improves-performance-in-deep-learning-d0d4059c1c10"></a>Hafidz's Blog.</div>
 </div>
 
@@ -56,7 +56,7 @@ $$ \epsilon_{k} = \epsilon_{0} \times \alpha^{\lfloor k/N \rfloor }$$
 where, $$\epsilon_{k}$$ is the learning rate for $$k_{th}$$ epoch, $$\epsilon_{0}$$ is the initial learning rate, $$\alpha$$ is the fraction by which learning rate is reduced, $$\lfloor . \rfloor$$ is floor operation and N is the number of epochs after which learning rate is dropped.  
 
 <div class="imgcap">
-<img src="/assets/Learning-Rate-Selection/stepdecay.png" width="35%">
+<img src="/assets/Learning-Rate-Selection/stepdecay.png" width="45%">
 <div class="thecap">Image credit: <a href="https://www.jeremyjordan.me/nn-learning-rate/"></a>Jeremy's Blog.</div>
 </div>
 
@@ -109,7 +109,7 @@ learning_step = (
 This technique is also very popular and its intuitive also. Keep using a big learning rate to quickly appraoch a local minima and reduce it once we hit a plateau (i.e. this learning rate is too big for now, we need smaller value to be able to fine tune the parameters more). The term plateau referes to the point when the change in loss wrt training iterations is less then a threshold $$\theta$$. What it essentially means is the loss vs iterations curve becomes flat. This is illustrated in the figure below. 
 
 <div class="imgcap">
-<img src="/assets/Learning-Rate-Selection/lr_decay_plateau.png" width="35%">
+<img src="/assets/Learning-Rate-Selection/lr_decay_plateau.png" width="45%">
 <!--div class="thecap">Image credit: <a href="https://www.jeremyjordan.me/nn-learning-rate/"></a>Jeremy's Blog.</div-->
 </div>
 
@@ -124,9 +124,7 @@ for global_step in range(0,total_steps):
     if change_in_loss > theta: 
         lr = lr*alpha   # Change the learning rate (eg. make it lr/10)
     # ...
-
     loss = ... 
-
     train_step = tf.train.GradientDescentOptimizer(     
         learning_rate=learning_rate).minimize(mse)  # create an optimizer with the placeholder input as learning rate
     sess = tf.Session()
