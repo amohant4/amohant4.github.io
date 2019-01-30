@@ -9,9 +9,6 @@ mathjax: true
 
 Learning rate is one of the most critical hyper-parameter and decides the fate of your training process. If you mess up the learning rate, then the optimizer might not be able to converge at all. Learning rate controls how much we updating the parameters in our network with respect to the gradient of loss. 
 
-
-$$mean = \frac{\displaystyle\sum_{i=1}^{n} x_{i}}{n}$$
-
 The gradient is given by: 
 
 $$g = \frac{1}{m^{'}}\nabla_{\theta}\sum_{i=1}^{m^{'}}L(x^{(i)},y^{(i)},\theta)$$
@@ -20,3 +17,8 @@ Using this gradient from the minibatch, stochastic gradient descent follows the 
 
 $$\theta \leftarrow \theta - \epsilon g $$  
 
+where $$ \epsilon $$ is the learning rate. 
+
+```
+new_weight = existing_weight — learning_rate * gradient
+```
