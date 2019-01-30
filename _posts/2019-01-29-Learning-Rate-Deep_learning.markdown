@@ -46,10 +46,35 @@ If we keep track of the learning rate and plot log of the learning rate and the 
 
 In general no fixed learning rate works best for the entire training process. Typically we start with a learning rate found using the method described above. During the training process we change learning rate to best facilitate learning. There are many different ways to accomplish this. In this blog, we will go through a few popular learning rate scheduler. 
 
-### Linear decay of learning rate
 
-In practice, it is common to decay the learning rate linearly until iteration $$\tau$$:
+### Step Decay
+
+Step decay schedule drops the learning rate by a factor every few epochs. The mathematical form of step decay is:
+
+$$ \epsilon_{k} = \epsilon_{0} \times drop^{floor(k/N) }$$
+
+where, $$\epsilon_{k}$$ is the learning rate for $$k_{th}$$ epoch, $$\epsilon_{0}$$ is the initial learning rate, $$drop$$ is the fraction by which learning rate is reduced and N is the number of epochs after which learning rate is dropped.  
+
+
+
+
+
+### Linear or Exponential Time-Based Decay
+
+This technique is also known as learning rate annealing. We start with a relatively high learning rate and then gradually lower it during training. The intuition behind this approach is that we'd like to traverse quickly from the initial parameters to a range of "good" parameter values but then we'd like a learning rate small enough that we can explore the "deeper, but narrower parts of the loss function" (fine tuning the parameters to get best results). 
+
+In practice, it is common to decay the learning rate  until iteration $$\tau$$. In case of linear decay, the learning rate is modified in the following manner:
 
 $$ \epsilon_{k} = (1-\alpha)\epsilon_{0} + \alpha \epsilon_{\tau} $$
 
 with $$ \alpha = \frac{k}{\tau}$$. After iteration $$ \tau$$, it is common to leave $$\epsilon$$  constant.   
+
+
+
+
+### 
+
+
+
+
+### Cyclic learning rates
