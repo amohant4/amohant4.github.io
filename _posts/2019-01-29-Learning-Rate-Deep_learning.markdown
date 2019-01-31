@@ -74,6 +74,10 @@ learning_step = (
 
 This technique is also known as learning rate annealing. We start with a relatively high learning rate and then gradually lower it during training. The intuition behind this approach is that we'd like to traverse quickly from the initial parameters to a range of "good" parameter values but then we'd like a learning rate small enough that we can explore the "deeper, but narrower parts of the loss function" (fine tuning the parameters to get best results). 
 
+<div class="imgcap">
+<img src="/assets/Learning-Rate-Selection/linear_exp.png" width="70%">
+</div>
+
 In practice, it is common to decay the learning rate  until iteration $$\tau$$. In case of linear decay, the learning rate is modified in the following manner:
 
 $$ \epsilon_{k} = (1-\alpha)\epsilon_{0} + \alpha \epsilon_{\tau} $$
