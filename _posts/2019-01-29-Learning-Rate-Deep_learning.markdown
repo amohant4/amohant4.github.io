@@ -7,7 +7,7 @@ date:   2019-01-29 05:04:00
 mathjax: true
 ---
 
-Learning rate is one of the most critical hyper-parameter and decides the fate of your training process. If you mess up the learning rate, then the optimizer might not be able to converge at all. This hyper-parameter controls how much we updating the parameters in our network with respect to the gradient of loss. As a brief introduction, the gradient is given by: 
+Learning rate is one of the most critical hyper-parameters and has the potential to decide the fate of your deep learning algorithm. If you mess it up, then the optimizer might not be able to converge at all! It acts as a gate which controls how much the optimizer is updating the parameters wrt gradient of loss. Speaking in terms of equations, gradient is given by: 
 
 $$g = \frac{1}{m^{'}}\nabla_{\theta}\sum_{i=1}^{m^{'}}L(x^{(i)},y^{(i)},\theta)$$
 
