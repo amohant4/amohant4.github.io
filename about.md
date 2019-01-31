@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 <div class="imgcap">
-<img src="/../assets/3H6A3357.jpg" height="300" width="300">
+<img src="/../assets/3H6A3357.jpg" height="200" width="200">
 </div>
 
 
@@ -15,14 +15,15 @@ p {
 }
 </style>
 
-Hi, my name is Abinash Mohanty. I am a PhD. candidate in [Arizona State University](www.asu.edu), advised by Professor [Yu Cao](http://nimo.asu.edu/ycao/). I am mainly interested in deep learning, especially algorithm design and hardware acceleration.
-
-During the course of my career, I have been very fortunate to have a taste of many diverse and fascinating fields of studies. I started with my undergraduation at [National Institute of Technology](http://nitrkl.ac.in/), Rourkela, India in the field of Electronics and Communications Engineering. After that I had the oppurtunity of working at Samsung Research Institute for 3 wonderful years. My stint at Samsung exposed me to many challenging projects on interesting topics like 3D stereoscopic rendering on embedded platforms, light weight and high performance widget engine using [Webkit's](https://webkit.org/) rendering engine etc. In the last 4 years, I took courses from many disciplines like machine learning, multi-core architectures, analog design, accelerator design etc.
-I also did an internship at Intel Corp in 2016, where I worked on architecture design and implementation of deep learning accelerators for speech processing. I have also worked as an consultant for [Boehringer Ingelheim](https://www.boehringer-ingelheim.com/).
+Hi, my name is Abinash Mohanty. I am a senior design engineer at [FABU Tech](https://www.fabu.ai/en). I completed my PhD in [Arizona State University](www.asu.edu), under the guidance of Professor [Yu Cao](http://nimo.asu.edu/ycao/). I am mainly interested in deep learning, especially algorithm design and hardware acceleration. During the course of my career, I have been very fortunate to have a taste of many diverse and fascinating fields of studies. I started with my undergraduation at [National Institute of Technology](http://nitrkl.ac.in/), Rourkela, India in the field of Electronics and Communications Engineering. After that I had the oppurtunity of working at Samsung Research Institute for 3 wonderful years. My stint at Samsung exposed me to many challenging projects on interesting topics like 3D stereoscopic rendering on embedded platforms, light weight and high performance widget engine using [Webkit's](https://webkit.org/) rendering engine etc. I did an internship at Intel Corp in 2016, where I worked on architecture design and implementation of deep learning accelerators for speech processing. I have also worked as consultant for [Boehringer Ingelheim](https://www.boehringer-ingelheim.com/) and [FABU Tech](https://www.fabu.ai/en). Did another internship at [FABU Tech](https://www.fabu.ai/en) in summer of 2018. 
 
 ### Timeline: ###
+* <span style="color:purple">2018 - Present</span>: FABU Tech, Tempe, AZ: Senior Design Engineer
+* <span style="color:purple">Summer 2018</span>: MobAI Tech, Tempe, AZ: Deep Learning Research Intern
+* <span style="color:purple">Spring 2018</span>: MobAI Tech, Tempe, AZ: Deep Learning Consultant
+* <span style="color:purple">Summer 2017</span>: Boehringer Ingelheim, Germany: Deep Learning Consultant
 * <span style="color:purple">Summer 2016</span>: Intel Corporation, Santa Clara, CA: Graduate Intern
-* <span style="color:purple">2013-Present</span>: Arizona State Univeristy, AZ: Electrical Engineering PhD. student
+* <span style="color:purple">2013-2018</span>: Arizona State Univeristy, AZ: Electrical Engineering PhD. student
 * <span style="color:purple">2010-2013</span>: Samsung Research Institute, Noida, India: Senior Software Engineer II
 * <span style="color:purple">2006-2010</span>: National Institute of Technology, Rourkela, India, Electronics & Comm. Engg., BTech
 
@@ -42,4 +43,4 @@ J.S., Vrudhula, S., Chae, J., Cao, Y., Berisha, V.,<span style="color:green">"To
 * Sutaria, K.B., __Mohanty, A.__, Wang, R., Huang, R. and Cao, Y.,<span style="color:green">"Accelerated aging in analog and digital circuits with feedback,"</span> in _IEEE Transactions on Device and Materials Reliability (TDMR)_, 2015, pp.384-393.
 * Sutaria, K.B., Ren, P., __Mohanty, A.__, Feng, X., Wang, R., Huang, R. and Cao, Y.,<span style="color:green">"Duty cycle shift under static/dynamic aging in 28nm HK-MG technology,"</span> in _IEEE International Reliability Physics Symposium (IRPS)_, 2015, pp. CA-7.
 
-<[Resume](../assets/cv.pdf) --  [Github](https://github.com/amohant4) >
+My resume can be found [here](../assets/cv.pdf).
