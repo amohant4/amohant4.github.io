@@ -7,3 +7,7 @@ date:   2019-01-31 02:04:00
 mathjax: true
 ---
 
+<div class="imgcap">
+<img src="/assets/Creating-your-own-dl-framework/framework.png" width="60%">
+<div class="thecap">Effect of various learning rates on convergence (Image credit: <a href="http://cs231n.github.io/neural-networks-3/">cs231n</a>).</div>
+</div>
