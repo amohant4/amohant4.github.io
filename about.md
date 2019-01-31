@@ -42,4 +42,4 @@ J.S., Vrudhula, S., Chae, J., Cao, Y., Berisha, V.,<span style="color:green">"To
 * Sutaria, K.B., __Mohanty, A.__, Wang, R., Huang, R. and Cao, Y.,<span style="color:green">"Accelerated aging in analog and digital circuits with feedback,"</span> in _IEEE Transactions on Device and Materials Reliability (TDMR)_, 2015, pp.384-393.
 * Sutaria, K.B., Ren, P., __Mohanty, A.__, Feng, X., Wang, R., Huang, R. and Cao, Y.,<span style="color:green">"Duty cycle shift under static/dynamic aging in 28nm HK-MG technology,"</span> in _IEEE International Reliability Physics Symposium (IRPS)_, 2015, pp. CA-7.
 
-<!-- [Resume](../assets/cv.pdf) --  [Github](https://github.com/amohant4) -->
+<[Resume](../assets/cv.pdf) --  [Github](https://github.com/amohant4) >
