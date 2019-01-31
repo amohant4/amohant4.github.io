@@ -69,7 +69,6 @@ learning_step = (
 )
 ```
 
-
 #### Linear or Exponential Time-Based Decay
 
 This technique is also known as learning rate annealing. We start with a relatively high learning rate and then gradually lower it during training. The intuition behind this approach is that we'd like to traverse quickly from the initial parameters to a range of "good" parameter values but then we'd like a learning rate small enough that we can explore the "deeper, but narrower parts of the loss function" (fine tuning the parameters to get best results). 
@@ -104,7 +103,7 @@ learning_step = (
 )
 ```
 
-#### Decrease learning rate when hit a pleteau
+#### Decrease learning rate when you hit a pleteau
 
 This technique is also very popular and its intuitive also. Keep using a big learning rate to quickly appraoch a local minima and reduce it once we hit a plateau (i.e. this learning rate is too big for now, we need smaller value to be able to fine tune the parameters more). The term plateau referes to the point when the change in loss wrt training iterations is less then a threshold $$\theta$$. What it essentially means is the loss vs iterations curve becomes flat. This is illustrated in the figure below. 
 
@@ -152,3 +151,6 @@ All the schemes we discussed so far were targeted at starting with a large learn
 <div class="thecap">Image credit: <a href="https://www.jeremyjordan.me/nn-learning-rate/">Jeremy's Blog</a>.</div>
 </div>
 
+The codes for cyclic learning rate can be found <a href="https://github.com/bckenstler/CLR">here</a>. 
+
+As an end note, there is no single leanring rate schedule scheme that works best for all applications and architecture. I start my experiments with the linear decay scheme (decaying the learning rate until some iteration and then keeping it constant). You can always start with some scheme and if the training error doesnot go down as expected, switch to some other scheme. Happy coding. 
