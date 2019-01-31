@@ -1,8 +1,8 @@
 ---
 layout: post
 comments: true
-title:  "The Subtle Art of Fixing and Modifying Learning Rate for Deep Neural Network Training."
-excerpt: "An introduction to learning rate hyper parameter. Methods and principles behind the procedures to find a good starting learning rate and adapt it over the course of training."
+title:  "The Subtle Art of Fixing and Modifying Learning Rate"
+excerpt: "An introduction to learning rate hyper-parameter and principles behind procedures to find a good starting value and adapting it over the course of training."
 date:   2019-01-29 05:04:00
 mathjax: true
 ---
@@ -152,4 +152,4 @@ All the schemes we discussed so far were targeted at starting with a large learn
 
 The codes for cyclic learning rate can be found <a href="https://github.com/bckenstler/CLR">here</a>. 
 
-As an end note, there is no single leanring rate schedule scheme that works best for all applications and architecture. I start my experiments with the linear decay scheme (decaying the learning rate until some iteration and then keeping it constant). You can always start with some scheme and if the training error doesnot go down as expected, switch to some other scheme. Happy coding. 
+As an end note, there is no single leanring rate schedule scheme that works best for all applications and architectures. I almost always start my experiments with the linear decay scheme (decaying the learning rate until some iteration and then keeping it constant). You can always start with some scheme and if the training error doesn't go down as expected, try some other scheme. Happy coding. 
