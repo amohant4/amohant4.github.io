@@ -43,7 +43,7 @@ In general no fixed learning rate works best for the entire training process. Ty
 
 #### Step Decay
 
-Step decay schedule drops the learning rate by a factor every few epochs. The mathematical form of step decay is:
+Step decay schedule drops the learning rate by a factor every few epochs. Mathematical form of step decay is:
 
 $$ \epsilon_{k} = \epsilon_{0} \times \alpha^{\lfloor k/N \rfloor }$$
 
@@ -134,9 +134,12 @@ for global_step in range(0,total_steps):
 
 #### Cyclic learning rates
 
-All the schemes we discussed so far were targeted at starting with a large learning rate and making it smaller as training progressed. some works like <a href="https://arxiv.org/abs/1506.01186">Cyclical Learning Rates for Training Neural Networks</a> and <a href="https://arxiv.org/abs/1608.03983">Stochastic Gradient Descent with Warm Restarts</a> suggest otherwise. Infact the authors of these works have demonstrated that a cyclical learning rate schedule which varies between two bound values can deliver results better than the traditional learning rate schedules. The intuition behind why cyclic learning rates work are: 
+All the schemes we discussed so far were targeted at starting with a large learning rate and making it smaller as training progressed. some works like <a href="https://arxiv.org/abs/1506.01186">Cyclical Learning Rates for Training Neural Networks</a> and <a href="https://arxiv.org/abs/1608.03983">Stochastic Gradient Descent with Warm Restarts</a> suggest otherwise. The underlying assumption behind cyclic learning rate is " increasing the learning rate might have a short term negative effect and yet achieve a longer term beneficial effect". The authors of these works have demonstrated that a cyclical learning rate schedule which varies between two bound values can deliver results better than the traditional learning rate schedules. The intuition behind why cyclic learning rates work are: 
+1. A minima that generalizes data well should not be a sharp minima, i.e. slight change in the parameters should not degrade the performance. By allowing for our learning rate to increase at times, we can "jump out" of sharp minima which would temporarily increase our loss but may ultimately lead to convergence on a more desirable minima. Look at this <a href="https://arxiv.org/abs/1703.04933">article</a> for a good counter-argument.
+2. Increasing the learning rate can also allow for "more rapid traversal of saddle point plateaus. As you can see in the image below, the gradients can be very small at a saddle point. Because the parameter updates are a function of the gradient, this results in our optimization taking very small steps; it can be useful to increase the learning rate here to avoid getting stuck for too long at a saddle point. So periodic increase in learning rate can help in quickly jumping saddle points. 
 
-1.  
-
-
+<div class="imgcap">
+<img src="/assets/Learning-Rate-Selection/Saddle_point.png" width="45%">
+<div class="thecap">Image credit: <a href="https://www.jeremyjordan.me/nn-learning-rate/"></a>Jeremy's Blog.</div>
+</div>
 
