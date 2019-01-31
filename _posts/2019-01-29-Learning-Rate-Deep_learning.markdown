@@ -1,8 +1,8 @@
 ---
 layout: post
 comments: true
-title:  "Learning Rate in Deep Learning"
-excerpt: "An introduction to learning rate hyper parameter used in deep neural network training. "
+title:  "The Subtle Art of Fixing and Modifying Learning Rate for Deep Neural Network Training."
+excerpt: "An introduction to learning rate hyper parameter. Methods and principles behind the procedures to find a good starting learning rate and adapt it over the course of training."
 date:   2019-01-29 05:04:00
 mathjax: true
 ---
@@ -39,7 +39,6 @@ If we keep track of the learning rate and plot log of the learning rate and the 
 </div>
 
 In general no fixed learning rate works best for the entire training process. Typically we start with a learning rate found using the method described above. During the training process we change learning rate to best facilitate learning. There are many different ways to accomplish this. In this blog, we will go through a few popular learning rate scheduler. 
-
 
 #### Step Decay
 
