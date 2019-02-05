@@ -8,7 +8,7 @@ mathjax: true
 ---
 
 <div class="imgcap">
-<img src="/assets/Creating-your-own-dl-framework/framework.png" width="80%">
+<img src="/assets/Creating-your-own-dl-framework/framework.png" width="100%">
 <!--div class="thecap">(Image credit: <a href="http://cs231n.github.io/neural-networks-3/">cs231n</a>).</div-->
 </div>
 
