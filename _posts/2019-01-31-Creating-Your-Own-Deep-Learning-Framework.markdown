@@ -33,11 +33,11 @@ with tf.Session() as sess:
 ```
 
 Looking at this program, we observe that we need the following:
-1. "graph" which defines what needs to be executed.
-2. "placeholders" to accept new inputs.  
-3. "session" in which the graph is executed.
-4. "operations" to operate on data in the graph.
-5. "variables" to store intermediate tensors.
+1. `graph` which defines what needs to be executed.
+2. `placeholders` to accept new inputs.  
+3. `session` in which the graph is executed.
+4. `operations` to operate on data in the graph.
+5. `variables` to store intermediate tensors.
 
 Lets tackle each of these separately.
 
