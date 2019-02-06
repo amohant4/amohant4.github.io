@@ -52,4 +52,21 @@ class Graph():
         self.variables = []
 ```
 
+#### PLACEHOLDERS
+Placeholders are for getting in new data. So at the start all we need to know is the shape of the placeholder and the actual data in it will be filled at the time of execution. So we create a class in which the constructor needs only the shape of it (shapes are critical when we can to determine sizes of intermediate variables based on other variables). Note that everytime we create a placeholder we append it to the list of placeholders in the graph object (em._default_graph). 
+```
+import emulator as em
+
+class Placeholder():
+    def __init__(self, shape):
+        self.output_nodes = []
+        self._shape = shape
+        em._default_graph.placeholders.append(self)
+
+    @property
+    def shape(self):
+        return self._shape  
+```
+
+
 Check out my <a href="https://github.com/amohant4/myFramework">github repo</a> for complete implementation.
