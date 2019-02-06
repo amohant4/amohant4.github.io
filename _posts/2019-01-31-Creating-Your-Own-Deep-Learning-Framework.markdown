@@ -68,5 +68,39 @@ class Placeholder():
         return self._shape  
 ```
 
+#### VARIABLES
+Variables are objects whose value can be altered during execution. We need to provide them with an initial value aswell. As as we did before, anytime we instantiate a variable object we need to append it to the list containing all variables in the graph. 
+
+```
+import emulator as em
+
+class Variable():
+    def __init__(self, shape, initial_value = None):
+        """
+        Constructor
+        """
+        self._shape = shape
+        self.value = initial_value
+        self.output_nodes = []
+        em._default_graph.variables.append(self)
+
+    @property
+    def shape(self):
+        """
+        API to get the shape of a variable
+        return type is python list
+        """
+        return self._shape
+
+    def load(self, val):
+        """
+        API to load values to a variable.
+        shape of the new value should be same as
+        the original shape of the variable.
+        Only supports numpy arrays as val.
+        """
+        assert list(val.shape) == self._shape
+        self.value = val
+```
 
 Check out my <a href="https://github.com/amohant4/myFramework">github repo</a> for complete implementation.
