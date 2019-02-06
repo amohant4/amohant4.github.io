@@ -104,6 +104,8 @@ class Variable():
 ```
 
 #### OPERATIONS
+Operations are responsible for modifying values in variables and placeholders to produce outputs. Here we will implement the base class for all operators. So methods like `shape` and `compute` which depend on the actual operation are to be implemented in the inherited subclass. 
+
 ```
 import emulator as em
 
