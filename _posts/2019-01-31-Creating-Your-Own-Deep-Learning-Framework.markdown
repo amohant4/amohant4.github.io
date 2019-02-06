@@ -19,8 +19,8 @@ Lets start with a very simple tensorflow example.
 ```
 import tensorflow as tf 
 
-x = tf.placeholder(tf.float32)
-y = tf.placeholder(tf.float32)
+x = tf.placeholder(tf.float32)  
+y = tf.placeholder(tf.float32)   
 z = tf.add(x,y)
 
 with tf.Session() as sess: 
@@ -30,8 +30,8 @@ with tf.Session() as sess:
     feed_dict = {x: 1.5, y: 2.5}
     result = sess.run(z, feed_dict=feed_dict)
     print result
-
 ```
+
 
 
 
