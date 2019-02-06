@@ -53,7 +53,7 @@ class Graph():
 ```
 
 #### PLACEHOLDERS
-Placeholders are for getting in new data. So at the start all we need to know is the shape of the placeholder and the actual data in it will be filled at the time of execution. So we create a class in which the constructor needs only the shape of it (shapes are critical when we can to determine sizes of intermediate variables based on other variables). Note that everytime we create a placeholder we append it to the list of placeholders in the graph object (em._default_graph). 
+Placeholders are for getting in new data. So at the start all we need to know is the shape of the placeholder and the actual data in it will be filled at the time of execution. So we create a class in which the constructor needs only the shape of it (shapes are critical when we can to determine sizes of intermediate variables based on other variables). Since its a node in the graph it will have an attribute called output_nodes to keep all the nodes to which this placeholder provides data to. Note that everytime we create a placeholder we append it to the list of placeholders in the graph object (em._default_graph).
 ```
 import emulator as em
 
@@ -69,7 +69,7 @@ class Placeholder():
 ```
 
 #### VARIABLES
-Variables are objects whose value can be altered during execution. We need to provide them with an initial value aswell. As as we did before, anytime we instantiate a variable object we need to append it to the list containing all variables in the graph. 
+Variables are objects whose value can be altered during execution. We need to provide them with an initial value aswell. As as we did before, anytime we instantiate a variable object we need to append it to the list containing all variables in the graph. Similarliy it will have an attribute called output_nodes to keep all the nodes to which this placeholder provides data to. We will provide an additional method to allow loading values into the variables.
 
 ```
 import emulator as em
@@ -102,5 +102,36 @@ class Variable():
         assert list(val.shape) == self._shape
         self.value = val
 ```
+
+#### OPERATIONS
+```
+import emulator as em
+
+class Operation(object):
+    def __init__(self, input_nodes = []):
+        self.input_nodes = input_nodes
+        self.output_nodes = []
+
+        # For every node in the input, we append this operation (self) to the list of
+        # the consumers of the input nodes
+        for node in input_nodes:
+            node.output_nodes.append(self)
+
+        # There will be a global default graph (TensorFlow works this way)
+        # We will then append this particular operation
+        # Append this operation to the list of operations in the currently active default graph
+        em._default_graph.operations.append(self)
+
+    @property
+    def shape(self):
+        raise NotImplementedError('Must be implemented in the subclass')
+
+    def compute(self):
+        """
+        Must be implemented in the sub class.
+        """
+        raise NotImplementedError('Must be implemented in the subclass')
+```
+
 
 Check out my <a href="https://github.com/amohant4/myFramework">github repo</a> for complete implementation.
