@@ -8,7 +8,7 @@ layout: default
     {% for post in site.posts %}
       <li>
         <div>
-          <img src="{{ post.thumbnail }}" float="left">
+          <img src="{{ post.thumbnail }}" class="post-thumbnail">
         </div>
         <div>
           <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
