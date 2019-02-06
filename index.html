@@ -5,7 +5,6 @@ layout: default
 <div class="home">
   
   <ul class="posts">
-<!--
     {% for post in site.posts %}
       <li>
         <div>
@@ -19,24 +18,5 @@ layout: default
         <div>  
       </li>
     {% endfor %}
--->
-    {% for post in site.posts %}
-      <li>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>          
-        <div>
-          <div>  
-            <img src="{{ post.thumbnail }}" class="post-thumbnail">  
-          </div>
-          <div>
-            <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-            <br>
-            {{ post.excerpt }}
-          </div>
-        <div>  
-      </li>
-    {% endfor %}
-
-
   </ul>
-
 </div>
