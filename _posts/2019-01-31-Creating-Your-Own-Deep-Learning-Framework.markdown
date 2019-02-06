@@ -33,6 +33,7 @@ with tf.Session() as sess:
 ```
 
 Looking at this program, we observe that we need the following:
+
 1. `graph` which defines what needs to be executed.
 2. `placeholders` to accept new inputs.  
 3. `session` in which the graph is executed.
@@ -104,7 +105,7 @@ class Variable():
 ```
 
 #### OPERATIONS
-Operations are responsible for modifying values in variables and placeholders to produce outputs. Here we will implement the base class for all operators. So methods like `shape` and `compute` which depend on the actual operation are to be implemented in the inherited subclass. 
+Operations are responsible for modifying values in variables and placeholders to produce outputs. Here we will implement the base class for all operators. So methods like `shape` and `compute` which depend on the actual operation are to be implemented in the inherited subclass.
 
 ```
 import emulator as em
