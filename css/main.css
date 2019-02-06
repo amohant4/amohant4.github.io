@@ -152,12 +152,13 @@ a:visited { color: #205caa; }
 
 .posts li { margin-bottom: 30px; }
 
-.posts post-thumbnail {
+.posts .post-thumbnail {
   width: 50px; /*fallback*/
   width: -webkit-calc(21.0%);
   width: -moz-calc(21.0%);
   width: -o-calc(21.0%);
   width: calc(21.0%);
+  float: left;
 }
 
 .posts .post-link {
