@@ -3,7 +3,6 @@ layout: post
 comments: true
 title:  "High Level Synthesis for Deep Learning"
 excerpt: "An introduction to hardware accelerator design for machine learning using high level synthesis with OpenCL kernels."
-thumbnail: "/assets/Creating-your-own-dl-framework/thumbnail.jpg" 
 date:   2017-12-16 11:00:00
 mathjax: true
 ---

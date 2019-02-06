@@ -3,7 +3,6 @@ layout: post
 comments: true
 title:  "The Subtle Art of Fixing and Modifying Learning Rate"
 excerpt: "An introduction to learning rate hyper-parameter and principles behind procedures to find a good starting value and adapting it over the course of training."
-thumbnail: "/assets/Creating-your-own-dl-framework/thumbnail.jpg" 
 date:   2019-01-29 05:04:00
 mathjax: true
 ---
