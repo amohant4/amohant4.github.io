@@ -154,10 +154,10 @@ a:visited { color: #205caa; }
 
 .posts .post-thumbnail {
   width: 50px; /*fallback*/
-  width: -webkit-calc(21.0%);
-  width: -moz-calc(21.0%);
-  width: -o-calc(21.0%);
-  width: calc(21.0%);
+  width: -webkit-calc(15.0%);
+  width: -moz-calc(15.0%);
+  width: -o-calc(15.0%);
+  width: calc(15.0%);
   float: left;
   margin-right: 5px;
 }
