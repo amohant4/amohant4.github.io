@@ -9,6 +9,8 @@ layout: default
       <li>
         <div>
           <img src=post.thumbnail float="left">
+        </div>
+        <div>  
           <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
           <br>
