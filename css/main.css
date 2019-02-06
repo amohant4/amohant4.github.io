@@ -159,6 +159,7 @@ a:visited { color: #205caa; }
   width: -o-calc(21.0%);
   width: calc(21.0%);
   float: left;
+  margin-right: 5px;
 }
 
 .posts .post-link {
