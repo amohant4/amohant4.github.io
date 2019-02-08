@@ -104,6 +104,7 @@ class Variable():
         self.value = val
 ```
 
+Before implementing operators and session, lets take a look at an simple example. 
 <div class="imgcap">
 <img src="/assets/Creating-your-own-dl-framework/graph.png" width="60%">
 </div>
