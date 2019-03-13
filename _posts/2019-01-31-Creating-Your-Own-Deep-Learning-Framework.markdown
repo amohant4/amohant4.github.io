@@ -35,7 +35,7 @@ with tf.Session() as sess:
 Looking at this program, we observe that we need the following:
 
 1. `graph` which defines what needs to be executed.
-2. `placeholders` to accept new inputs.  
+2. `placeholders` to accept new inputs that are supplied during the execution.  
 3. `session` in which the graph is executed.
 4. `operations` to operate on data in the graph.
 5. `variables` to store intermediate tensors.
@@ -110,7 +110,7 @@ Before implementing operators and session, lets take a look at an simple example
 </div>
 
 #### OPERATIONS
-Operations are responsible for modifying values in variables and placeholders to produce outputs. Here we will implement the base class for all operators. So methods like `shape` and `compute` which depend on the actual operation are to be implemented in the inherited subclass.
+Operations are responsible for modifying values in variables and placeholders to produce outputs. Here we will implement the base class for all operators. So methods like `shape` and `compute` which depend on the actual operation are to be implemented in the inherited subclass. Operators are associated with inputs (on which it operates) and outputs (nodes in the graph that consumes this Op's output). 
 
 ```
 import emulator as em
