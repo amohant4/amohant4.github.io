@@ -43,7 +43,7 @@ Looking at this program, we observe that we need the following:
 Lets tackle each of these separately.
 
 #### GRAPH
-Graph is the superset that contains all the operations, placeholders and variables. To make things simple, we will store all operations, placeholders and variables as separate lists in the graph object. The python code for this is very simple and straight forward.
+Graph is the superset container that contains all the operations, placeholders and variables. To make things simple, we will store all operations, placeholders and variables as separate lists in the graph object. The python code for this is very simple and straight forward.
 
 ```
 class Graph():
@@ -52,6 +52,17 @@ class Graph():
         self.placeholders = []
         self.variables = []
 ```
+
+Before implementing the rest, lets take a look at an simple example. 
+<div class="imgcap">
+<img src="/assets/Creating-your-own-dl-framework/graph.png" width="60%">
+</div>
+
+Lets assume the following for the graph shown above:
+
+1. `A` and `B` are Placeholders
+2. `C` is a Variable
+3. `ADD` and `MULTIPLY` are Operations
 
 #### PLACEHOLDERS
 Placeholders are for getting in new data. So at the start all we need to know is the shape of the placeholder and the actual data in it will be filled at the time of execution. So we create a class in which the constructor needs only the shape of it (shapes are critical when we can to determine sizes of intermediate variables based on other variables). Since its a node in the graph it will have an attribute called output_nodes to keep all the nodes to which this placeholder provides data to. Note that everytime we create a placeholder we append it to the list of placeholders in the graph object (em._default_graph). 
@@ -65,7 +76,7 @@ class Placeholder():
     def __init__(self, shape):
         # Keep track of all nodes that are connected to this node
         self.output_nodes = []
-        self._shape = shape 
+        self._shape = shape
         # After creating it, add the instance to list
         # containing all placeholders in the current graph (_default_graph.placeholders)
         em._default_graph.placeholders.append(self)
@@ -76,7 +87,7 @@ class Placeholder():
 ```
 
 #### VARIABLES
-Variables are objects whose value can be altered during execution. We need to provide them with an initial value aswell. As as we did before, anytime we instantiate a variable object we need to append it to the list containing all variables in the graph. Similarliy it will have an attribute called output_nodes to keep all the nodes to which this placeholder provides data to. We will provide an additional method to allow loading values into the variables.
+Variables are objects whose value can be altered during execution. We need to provide them with an initial value aswell. As as we did before, anytime we instantiate a variable object we need to append it to the list containing all variables in the graph. Similarliy it will have an attribute called output_nodes to keep track of the nodes which consume its output. We will provide an additional method to allow loading values into the variables. Va
 
 ```
 import emulator as em
@@ -87,8 +98,13 @@ class Variable():
         Constructor
         """
         self._shape = shape
+        # Actual value of the variable. Initialize it with 
+        # initial_value at the time of creation
         self.value = initial_value
+        # Keep track of all nodes that are connected to this node
         self.output_nodes = []
+        # After creating it, add the instance to list
+        # containing all variables in the current graph (_default_graph.variables)
         em._default_graph.variables.append(self)
 
     @property
@@ -110,10 +126,7 @@ class Variable():
         self.value = val
 ```
 
-Before implementing operators and session, lets take a look at an simple example. 
-<div class="imgcap">
-<img src="/assets/Creating-your-own-dl-framework/graph.png" width="60%">
-</div>
+
 
 #### OPERATIONS
 Operations are responsible for modifying values in variables and placeholders to produce outputs. Here we will implement the base class for all operators. So methods like `shape` and `compute` which depend on the actual operation are to be implemented in the inherited subclass. Operators are associated with inputs (on which it operates) and outputs (nodes in the graph that consumes this Op's output). 
