@@ -55,7 +55,7 @@ class Graph():
 
 Before implementing the rest, lets take a look at an simple example. 
 <div class="imgcap">
-<img src="/assets/Creating-your-own-dl-framework/graph.png" width="60%">
+<img src="/assets/Creating-your-own-dl-framework/graph.png" width="40%">
 </div>
 
 Lets assume the following for the graph shown above:
