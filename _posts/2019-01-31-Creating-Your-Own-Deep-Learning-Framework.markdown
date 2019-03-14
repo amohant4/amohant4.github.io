@@ -16,7 +16,7 @@ You may be the brain but software frameworks have always been the brawn behind d
 
 Lets start with a very simple tensorflow example.
 
-```
+```Python
 import tensorflow as tf
 
 x = tf.placeholder(tf.float32)  
@@ -45,7 +45,7 @@ Lets tackle each of these separately.
 #### GRAPH
 Graph is the superset container that contains all the operations, placeholders and variables. To make things simple, we will store all operations, placeholders and variables as separate lists in the graph object. The python code for this is very simple and straight forward.
 
-```
+```Python
 class Graph():
     def __init__(self):
         self.operations = []
@@ -53,7 +53,7 @@ class Graph():
         self.variables = []
 ```
 
-Before implementing the rest, lets take a look at an simple example. 
+Before implementing the rest, lets take a look at an simple example.
 <div class="imgcap">
 <img src="/assets/Creating-your-own-dl-framework/graph.png" width="40%">
 </div>
@@ -73,11 +73,11 @@ The dependency relations in this graph can be listed as follows:
 5. Inputs of `MULTIPLY` are `ADD` and `C`
 
 #### PLACEHOLDERS
-Placeholders are for getting in new data. So at the start all we need to know is the shape of the placeholder and the actual data in it will be filled at the time of execution. So we create a class in which the constructor needs only the shape of it (shapes are critical when we can to determine sizes of intermediate variables based on other variables). Since its a node in the graph it will have an attribute called output_nodes to keep all the nodes to which this placeholder provides data to. Note that everytime we create a placeholder we append it to the list of placeholders in the graph object (em._default_graph). 
+Placeholders are for getting in new data. So at the start all we need to know is the shape of the placeholder and the actual data in it will be filled at the time of execution. So we create a class in which the constructor needs only the shape of it (shapes are critical when we can to determine sizes of intermediate variables based on other variables). Since its a node in the graph it will have an attribute called output_nodes to keep all the nodes to which this placeholder provides data to. Note that everytime we create a placeholder we append it to the list of placeholders in the graph object (em._default_graph).
 
 Placeholders are nodes in the graph whose outputs are consumed by other nodes. So to keep track of the nodes which any particular placeholder feeds data, we add member variable list (self.output_nodes) to store all nodes connected to it. Since placeholders never consume any other node's output, we don't need anything member variables for inputs.
 
-```
+```Python
 import emulator as em
 
 class Placeholder():
@@ -95,9 +95,9 @@ class Placeholder():
 ```
 
 #### VARIABLES
-Variables are objects whose value can be altered during execution. We need to provide them with an initial value aswell. As as we did before, anytime we instantiate a variable object we need to append it to the list containing all variables in the graph. Similarliy it will have an attribute called output_nodes to keep track of the nodes which consume its output. We will provide an additional method to allow loading values into the variables. Va
+Variables are objects whose value can be altered during execution. We need to provide them with an initial value aswell. As as we did before, anytime we instantiate a variable object we need to append it to the list containing all variables in the graph. Similarliy it will have an attribute called output_nodes to keep track of the nodes which consume its output. We will provide an additional method to allow loading values into the variables.
 
-```
+```Python
 import emulator as em
 
 class Variable():
@@ -134,12 +134,11 @@ class Variable():
         self.value = val
 ```
 
-
-
 #### OPERATIONS
-Operations are responsible for modifying values in variables and placeholders to produce outputs. Here we will implement the base class for all operators. So methods like `shape` and `compute` which depend on the actual operation are to be implemented in the inherited subclass. Operators are associated with inputs (on which it operates) and outputs (nodes in the graph that consumes this Op's output). 
 
-```
+Operations are responsible for modifying values in variables and placeholders to produce outputs. Here we will implement the base class for all operators. So methods like `shape` and `compute` which depend on the actual operation are to be implemented in the inherited subclass. Operators are associated with inputs (on which it operates) and outputs (nodes in the graph that consumes this Op's output).
+
+```Python
 import emulator as em
 
 class Operation(object):
@@ -170,7 +169,7 @@ class Operation(object):
 
 #### SESSION
 
-```
+```Python
 import numpy as np
 from .operation import Operation
 from .placeholder import Placeholder
