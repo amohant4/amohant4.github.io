@@ -64,6 +64,14 @@ Lets assume the following for the graph shown above:
 2. `C` is a Variable
 3. `ADD` and `MULTIPLY` are Operations
 
+The dependency relations in this graph can be listed as follows:
+
+1. `A`, `B` and `C` don't have any inputs
+2. `ADD` is the output of `A` and `B`
+3. `Multiply` is the output of `ADD` and `C`
+4. Inputs of `ADD` are `A` and `B`
+5. Inputs of `MULTIPLY` are `ADD` and `C`
+
 #### PLACEHOLDERS
 Placeholders are for getting in new data. So at the start all we need to know is the shape of the placeholder and the actual data in it will be filled at the time of execution. So we create a class in which the constructor needs only the shape of it (shapes are critical when we can to determine sizes of intermediate variables based on other variables). Since its a node in the graph it will have an attribute called output_nodes to keep all the nodes to which this placeholder provides data to. Note that everytime we create a placeholder we append it to the list of placeholders in the graph object (em._default_graph). 
 
