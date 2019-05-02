@@ -1,44 +1,63 @@
 ---
 layout: post
 comments: true
-title:  "Creating Your Very Own Deep Learning Framework"
+title:  "Deep Learning inference framework using native Python"
 excerpt: "Designing a framework to do deep learning inference using only python."
 date:   2019-01-31 02:04:00
 mathjax: true
 ---
 
 <div class="imgcap">
-<img src="/assets/Creating-your-own-dl-framework/framework.png" width="100%">
+<img src="/assets/Creating-your-own-dl-framework/framework.png" width="70%">
 <!--div class="thecap">(Image credit: <a href="http://cs231n.github.io/neural-networks-3/">cs231n</a>).</div-->
 </div>
 
-You may be the brain but software frameworks have always been the brawn behind development and sucess of deep learning algorithms. Frameworks tike Tensorflow, Caffe, Torch, Theano, etc. do a lot of the heavy lifting by abstracting out the time consuming and difficult task of coding the routines necessary for development. In this post, as a tribute to all the awesome engineers working towards the development of these frameworks, we shall implement a very small scale deep learning inference framework in python. I came across something like this while I was taking the Python for Machine Learning course in Udacity. I added more functionality to make it look like a complete framework very similar to tensorflow :-)
+You may be the brain but software frameworks have always been the brawn behind development and sucess of deep learning algorithms. Frameworks tike Tensorflow, Caffe, Torch, Theano, etc. do most of the heavy lifting by abstracting out the time consuming and difficult task of coding the routines necessary for development. In this post, as a tribute to all the awesome engineers working towards the development of these frameworks, we shall implement a very small scale deep learning inference framework in python. I came across something like this while I was taking the Python for Machine Learning course in Udacity. I added more functionality to make it look like a complete framework very similar to tensorflow :-)
 
-Lets start with a very simple tensorflow example.
+Lets start with a very simple example. Consider the graph below (we shall call it <span style="color:green">GRAPH_ABC</span>). 
+
+<div class="imgcap">
+<img src="/assets/Creating-your-own-dl-framework/graph.png" width="40%">
+</div>
+
+Suppose as-per our design requirement we want that in <span style="color:green">GRAPH_ABC</span>:
+1. <span style="color:red">A</span> and <span style="color:red">B</span> to be supplied from outside when we execute the graph
+2. <span style="color:blue">C</span> to be a variable defined inside the graph 
+3. <span style="color:orange">ADD</span> and <span style="color:orange">MULTIPLY</span> as operators operating on <span style="color:red">A</span>, <span style="color:red">B</span> and <span style="color:blue">C</span>
+
+In Tensorflow's terminology:
+1. <span style="color:red">A</span> and <span style="color:red">B</span> are `placeholders`
+2. <span style="color:blue">C</span> is a `variable`
+3. <span style="color:orange">ADD</span> and <span style="color:orange">MULTIPLY</span> are `operations`
+
+<span style="color:green">GRAPH_ABC</span> can be easily constructed with the following code: 
 
 ```python
 import tensorflow as tf
 
-x = tf.placeholder(tf.float32)  
-y = tf.placeholder(tf.float32)
-z = tf.add(x,y)
+A = tf.placeholder(tf.float32, name='a')  
+B = tf.placeholder(tf.float32, name='b')
+C = tf.Variable(1.0, name='c')
+y = tf.add(A,B)
+z = tf.math.multiply(C,y,name='z')
 
 with tf.Session() as sess:
-    feed_dict = {x: 1.0, y: 2.0}
+    sess.run(tf.initializers.global_variables())    
+    feed_dict = {A: 1.0, B: 2.0}
     result = sess.run(z, feed_dict=feed_dict)
     print result
-    feed_dict = {x: 1.5, y: 2.5}
+    feed_dict = {A: 1.5, B: 2.5}
     result = sess.run(z, feed_dict=feed_dict)
     print result
 ```
 
-Looking at this program, we observe that we need the following:
+Looking at this, we observe that in a typical tensorflow program, we need the following:
 
 1. `graph` which defines what needs to be executed.
-2. `placeholders` to accept new inputs that are supplied during the execution.  
-3. `session` in which the graph is executed.
+2. `placeholders` to accept new inputs (from external world) that are supplied during the execution.  
+3. `variables` to store intermediate tensors.
 4. `operations` to operate on data in the graph.
-5. `variables` to store intermediate tensors.
+5. `session` in which the graph is executed.
 
 Lets tackle each of these separately.
 
@@ -53,28 +72,15 @@ class Graph():
         self.variables = []
 ```
 
-Before implementing the rest, lets take a look at an simple example.
-<div class="imgcap">
-<img src="/assets/Creating-your-own-dl-framework/graph.png" width="40%">
-</div>
+Lets go back to our <span style="color:green">GRAPH_ABC</span> and take a look at the dependency relations between the various nodes in it.
 
-Lets assume the following for the graph shown above:
+1. <span style="color:red">A</span>, <span style="color:red">B</span> and <span style="color:blue">C</span> don't have any inputs
+2. <span style="color:orange">ADD</span> consumes the outputs of <span style="color:red">A</span> and <span style="color:red">B</span>
+3. <span style="color:orange">MULTIPLY</span> consumes the output of <span style="color:orange">ADD</span> and <span style="color:blue">C</span>
+4. Inputs of <span style="color:orange">ADD</span> are outputs of <span style="color:red">A</span> and <span style="color:red">B</span>
+5. Inputs of <span style="color:orange">MULTIPLY</span> are outputs of <span style="color:orange">ADD</span> and <span style="color:blue">C</span>
 
-1. `A` and `B` are Placeholders
-2. `C` is a Variable
-3. `ADD` and `MULTIPLY` are Operations
-
-The dependency relations in this graph can be listed as follows:
-
-1. `A`, `B` and `C` don't have any inputs
-2. `ADD` is the output of `A` and `B`
-3. `Multiply` is the output of `ADD` and `C`
-4. Inputs of `ADD` are `A` and `B`
-5. Inputs of `MULTIPLY` are `ADD` and `C`
-
-Based on this, we can infer the following about the properties:
-
-1. `Variables` and `Placeholders` do not have inputs
+Without loosing generality, we can safely state that variables and placeholders do not have inputs. Operations can consume either variables, outputs from other operators or constants.
 
 #### PLACEHOLDERS
 Placeholders are for getting in new data. So at the start all we need to know is the shape of the placeholder and the actual data in it will be filled at the time of execution. So we create a class in which the constructor needs only the shape of it (shapes are critical when we can to determine sizes of intermediate variables based on other variables). Since its a node in the graph it will have an attribute called output_nodes to keep all the nodes to which this placeholder provides data to. Note that everytime we create a placeholder we append it to the list of placeholders in the graph object (em._default_graph).
@@ -140,7 +146,7 @@ class Variable():
 
 #### OPERATIONS
 
-Operations are responsible for modifying values in variables and placeholders to produce outputs. Here we will implement the base class for all operators. So methods like `shape` and `compute` which depend on the actual operation are to be implemented in the inherited subclass. Operators are associated with inputs (on which it operates) and outputs (nodes in the graph that consumes this Op's output).
+Operations are responsible for modifying values in variables and placeholders to produce outputs. Here we will implement the base class for all operators. So methods like `shape` and `compute` which depend on the actual operation are to be implemented in the inherited subclass. Operators are associated with inputs (on which it operates) and outputs (nodes in the graph that consumes this Op's output). Everytime we add a new operation node with a set of inputs nodes, we append this operation node to the list of output_nodes of each of the inputs (this will help us while traversing the graph and executing it). 
 
 ```python
 import emulator as em
@@ -171,7 +177,26 @@ class Operation(object):
         raise NotImplementedError('Must be implemented in the subclass')
 ```
 
+Lets take a look at an example op. He shall implement elementwise add operator. We have put the Operation class in emulator module. 
+
+```python
+from emulator.operation import Operation 
+
+class add(Operation):
+    def __init__(self, a, b):
+        super(add, self).__init__([a,b])
+        self.shape = a.get_shape()
+
+    def compute(self, var_a, var_b):
+        self.inputs = [var_a, var_b]
+return var_a + var_b
+```
+
 #### SESSION
+
+We run session with any node in the graph (whose value we want) and a feed dictionary with the values of the placeholders we want to execute the graph with. 
+
+In session.run method, we first create a list of nodes obtained by doing a post order traversal of the graph starting at the output node. Essentially, this creates a list of all nodes (in proper order) that we have to execute to get the output of the required node. It does so by recursively appending nodes and their inputs to the list. For placeholders, the node output is obtained from the feed_dict. For variables, the node output is obtained using node.value memeber variable. For operations, we execute node.compute(node.inputs) to get its output value. 
 
 ```python
 import numpy as np
@@ -204,4 +229,5 @@ class Session:
                 node.output = np.array(node.output)
         return operation.output
 ```
-Check out my <a href="https://github.com/amohant4/myFramework">github repo</a> for complete implementation.
+
+Using this template, you can add more ops like conv2d, pool, etc. If you have any custom hardware accelerator, you can model layer execution using similar method and check networks performance. Check out my <a href="https://github.com/amohant4/myFramework">github repo</a> for complete implementation.   
