@@ -5,6 +5,7 @@ title:  "High Level Synthesis for Deep Learning"
 excerpt: "An introduction to hardware accelerator design for machine learning using high level synthesis with OpenCL kernels."
 date:   2017-12-16 11:00:00
 mathjax: true
+tag: tech
 ---
 
 

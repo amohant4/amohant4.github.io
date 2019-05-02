@@ -5,6 +5,7 @@ title:  "Deep Learning inference framework using native Python"
 excerpt: "Designing a framework to do deep learning inference using only python."
 date:   2019-01-31 02:04:00
 mathjax: true
+tag: "tech"
 ---
 
 <div class="imgcap">

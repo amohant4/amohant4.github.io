@@ -5,6 +5,7 @@ title:  "The Subtle Art of Fixing and Modifying Learning Rate"
 excerpt: "An introduction to learning rate hyper-parameter and principles behind procedures to find a good starting value and adapting it over the course of training."
 date:   2019-01-29 05:04:00
 mathjax: true
+tag: "tech"
 ---
 
 Learning rate is one of the most critical hyper-parameters and has the potential to decide the fate of your deep learning algorithm. If you mess it up, then the optimizer might not be able to converge at all! It acts as a gate which controls how much the optimizer is updating the parameters wrt gradient of loss. Speaking in terms of equations, gradient is given by: 
