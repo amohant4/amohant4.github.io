@@ -2,7 +2,7 @@
 layout: post
 comments: true
 title:  "Configuring tmux for more intuitive hot keys and better looking UI"
-excerpt: ""
+excerpt: "Detailed explanation on how to install, configure and manage tmux sessions for a more intuitive user experience"
 date:   2019-05-12 01:21:00
 mathjax: true
 ---
